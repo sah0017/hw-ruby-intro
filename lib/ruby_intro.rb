@@ -3,11 +3,40 @@
 # Part 1
 
 def sum arr
-  return 0
+  total = 0
+  arr.each do |val|
+      total = total + val
+  end
+  return total
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+  total = 0
+  if not arr.empty?
+      if arr.length > 1
+          if arr[0] > arr[1]
+              largest = arr[0]
+              next_largest = arr[1]
+          else 
+              largest = arr[1]
+              next_largest = arr[0]
+          end
+
+          arr.drop(2).each do |val|
+              if val > largest
+                  next_largest = largest
+                  largest = val
+              elsif val > next_largest
+                  next_largest = val
+              end
+          end
+          total = largest + next_largest
+      else
+          total = arr[0]
+      end
+  end
+  return total
+          
 end
 
 def sum_to_n? arr, n
